@@ -27,95 +27,95 @@ privileged aspect FieldIntegrationTest_Roo_IntegrationTest {
     private FieldDataOnDemand FieldIntegrationTest.dod;
     
     @Test
-    public void FieldIntegrationTest.testCountFieldEntitys() {
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", dod.getRandomFieldEntity());
-        long count = FieldEntityBase.countFieldEntitys();
-        Assert.assertTrue("Counter for 'FieldEntity' incorrectly reported there were no entries", count > 0);
+    public void FieldIntegrationTest.testCountFieldEntityBases() {
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", dod.getRandomFieldEntityBase());
+        long count = FieldEntityBase.countFieldEntityBases();
+        Assert.assertTrue("Counter for 'FieldEntityBase' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void FieldIntegrationTest.testFindFieldEntity() {
-        FieldEntityBase obj = dod.getRandomFieldEntity();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", obj);
+    public void FieldIntegrationTest.testFindFieldEntityBase() {
+        FieldEntityBase obj = dod.getRandomFieldEntityBase();
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to provide an identifier", id);
-        obj = FieldEntityBase.findFieldEntity(id);
-        Assert.assertNotNull("Find method for 'FieldEntity' illegally returned null for id '" + id + "'", obj);
-        Assert.assertEquals("Find method for 'FieldEntity' returned the incorrect identifier", id, obj.getId());
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to provide an identifier", id);
+        obj = FieldEntityBase.findFieldEntityBase(id);
+        Assert.assertNotNull("Find method for 'FieldEntityBase' illegally returned null for id '" + id + "'", obj);
+        Assert.assertEquals("Find method for 'FieldEntityBase' returned the incorrect identifier", id, obj.getId());
     }
     
     @Test
-    public void FieldIntegrationTest.testFindAllFieldEntitys() {
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", dod.getRandomFieldEntity());
-        long count = FieldEntityBase.countFieldEntitys();
-        Assert.assertTrue("Too expensive to perform a find all test for 'FieldEntity', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<FieldEntityBase> result = FieldEntityBase.findAllFieldEntitys();
-        Assert.assertNotNull("Find all method for 'FieldEntity' illegally returned null", result);
-        Assert.assertTrue("Find all method for 'FieldEntity' failed to return any data", result.size() > 0);
+    public void FieldIntegrationTest.testFindAllFieldEntityBases() {
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", dod.getRandomFieldEntityBase());
+        long count = FieldEntityBase.countFieldEntityBases();
+        Assert.assertTrue("Too expensive to perform a find all test for 'FieldEntityBase', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
+        List<FieldEntityBase> result = FieldEntityBase.findAllFieldEntityBases();
+        Assert.assertNotNull("Find all method for 'FieldEntityBase' illegally returned null", result);
+        Assert.assertTrue("Find all method for 'FieldEntityBase' failed to return any data", result.size() > 0);
     }
     
     @Test
-    public void FieldIntegrationTest.testFindFieldEntityEntries() {
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", dod.getRandomFieldEntity());
-        long count = FieldEntityBase.countFieldEntitys();
+    public void FieldIntegrationTest.testFindFieldEntityBaseEntries() {
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", dod.getRandomFieldEntityBase());
+        long count = FieldEntityBase.countFieldEntityBases();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<FieldEntityBase> result = FieldEntityBase.findFieldEntityEntries(firstResult, maxResults);
-        Assert.assertNotNull("Find entries method for 'FieldEntity' illegally returned null", result);
-        Assert.assertEquals("Find entries method for 'FieldEntity' returned an incorrect number of entries", count, result.size());
+        List<FieldEntityBase> result = FieldEntityBase.findFieldEntityBaseEntries(firstResult, maxResults);
+        Assert.assertNotNull("Find entries method for 'FieldEntityBase' illegally returned null", result);
+        Assert.assertEquals("Find entries method for 'FieldEntityBase' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void FieldIntegrationTest.testFlush() {
-        FieldEntityBase obj = dod.getRandomFieldEntity();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", obj);
+        FieldEntityBase obj = dod.getRandomFieldEntityBase();
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to provide an identifier", id);
-        obj = FieldEntityBase.findFieldEntity(id);
-        Assert.assertNotNull("Find method for 'FieldEntity' illegally returned null for id '" + id + "'", obj);
-        boolean modified =  dod.modifyFieldEntity(obj);
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to provide an identifier", id);
+        obj = FieldEntityBase.findFieldEntityBase(id);
+        Assert.assertNotNull("Find method for 'FieldEntityBase' illegally returned null for id '" + id + "'", obj);
+        boolean modified =  dod.modifyFieldEntityBase(obj);
         Integer currentVersion = obj.getVersion();
         obj.flush();
-        Assert.assertTrue("Version for 'FieldEntity' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'FieldEntityBase' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void FieldIntegrationTest.testMergeUpdate() {
-        FieldEntityBase obj = dod.getRandomFieldEntity();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", obj);
+        FieldEntityBase obj = dod.getRandomFieldEntityBase();
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to provide an identifier", id);
-        obj = FieldEntityBase.findFieldEntity(id);
-        boolean modified =  dod.modifyFieldEntity(obj);
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to provide an identifier", id);
+        obj = FieldEntityBase.findFieldEntityBase(id);
+        boolean modified =  dod.modifyFieldEntityBase(obj);
         Integer currentVersion = obj.getVersion();
         FieldEntityBase merged = (FieldEntityBase)obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
-        Assert.assertTrue("Version for 'FieldEntity' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'FieldEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void FieldIntegrationTest.testPersist() {
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", dod.getRandomFieldEntity());
-        FieldEntityBase obj = dod.getNewTransientFieldEntity(Integer.MAX_VALUE);
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to provide a new transient entity", obj);
-        Assert.assertNull("Expected 'FieldEntity' identifier to be null", obj.getId());
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", dod.getRandomFieldEntityBase());
+        FieldEntityBase obj = dod.getNewTransientFieldEntityBase(Integer.MAX_VALUE);
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to provide a new transient entity", obj);
+        Assert.assertNull("Expected 'FieldEntityBase' identifier to be null", obj.getId());
         obj.persist();
         obj.flush();
-        Assert.assertNotNull("Expected 'FieldEntity' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'FieldEntityBase' identifier to no longer be null", obj.getId());
     }
     
     @Test
     public void FieldIntegrationTest.testRemove() {
-        FieldEntityBase obj = dod.getRandomFieldEntity();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to initialize correctly", obj);
+        FieldEntityBase obj = dod.getRandomFieldEntityBase();
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'FieldEntity' failed to provide an identifier", id);
-        obj = FieldEntityBase.findFieldEntity(id);
+        Assert.assertNotNull("Data on demand for 'FieldEntityBase' failed to provide an identifier", id);
+        obj = FieldEntityBase.findFieldEntityBase(id);
         obj.remove();
         obj.flush();
-        Assert.assertNull("Failed to remove 'FieldEntity' with identifier '" + id + "'", FieldEntityBase.findFieldEntity(id));
+        Assert.assertNull("Failed to remove 'FieldEntityBase' with identifier '" + id + "'", FieldEntityBase.findFieldEntityBase(id));
     }
     
 }

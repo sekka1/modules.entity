@@ -4,7 +4,7 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.GroupDataOnDemand;
-import io.algorithms.entity.GroupEntity;
+import io.algorithms.entity.GroupEntityBase;
 import io.algorithms.entity.GroupIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
@@ -27,95 +27,95 @@ privileged aspect GroupIntegrationTest_Roo_IntegrationTest {
     private GroupDataOnDemand GroupIntegrationTest.dod;
     
     @Test
-    public void GroupIntegrationTest.testCountGroupEntitys() {
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", dod.getRandomGroupEntity());
-        long count = GroupEntity.countGroupEntitys();
-        Assert.assertTrue("Counter for 'GroupEntity' incorrectly reported there were no entries", count > 0);
+    public void GroupIntegrationTest.testCountGroupEntityBases() {
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", dod.getRandomGroupEntityBase());
+        long count = GroupEntityBase.countGroupEntityBases();
+        Assert.assertTrue("Counter for 'GroupEntityBase' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void GroupIntegrationTest.testFindGroupEntity() {
-        GroupEntity obj = dod.getRandomGroupEntity();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", obj);
+    public void GroupIntegrationTest.testFindGroupEntityBase() {
+        GroupEntityBase obj = dod.getRandomGroupEntityBase();
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to provide an identifier", id);
-        obj = GroupEntity.findGroupEntity(id);
-        Assert.assertNotNull("Find method for 'GroupEntity' illegally returned null for id '" + id + "'", obj);
-        Assert.assertEquals("Find method for 'GroupEntity' returned the incorrect identifier", id, obj.getId());
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to provide an identifier", id);
+        obj = GroupEntityBase.findGroupEntityBase(id);
+        Assert.assertNotNull("Find method for 'GroupEntityBase' illegally returned null for id '" + id + "'", obj);
+        Assert.assertEquals("Find method for 'GroupEntityBase' returned the incorrect identifier", id, obj.getId());
     }
     
     @Test
-    public void GroupIntegrationTest.testFindAllGroupEntitys() {
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", dod.getRandomGroupEntity());
-        long count = GroupEntity.countGroupEntitys();
-        Assert.assertTrue("Too expensive to perform a find all test for 'GroupEntity', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<GroupEntity> result = GroupEntity.findAllGroupEntitys();
-        Assert.assertNotNull("Find all method for 'GroupEntity' illegally returned null", result);
-        Assert.assertTrue("Find all method for 'GroupEntity' failed to return any data", result.size() > 0);
+    public void GroupIntegrationTest.testFindAllGroupEntityBases() {
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", dod.getRandomGroupEntityBase());
+        long count = GroupEntityBase.countGroupEntityBases();
+        Assert.assertTrue("Too expensive to perform a find all test for 'GroupEntityBase', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
+        List<GroupEntityBase> result = GroupEntityBase.findAllGroupEntityBases();
+        Assert.assertNotNull("Find all method for 'GroupEntityBase' illegally returned null", result);
+        Assert.assertTrue("Find all method for 'GroupEntityBase' failed to return any data", result.size() > 0);
     }
     
     @Test
-    public void GroupIntegrationTest.testFindGroupEntityEntries() {
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", dod.getRandomGroupEntity());
-        long count = GroupEntity.countGroupEntitys();
+    public void GroupIntegrationTest.testFindGroupEntityBaseEntries() {
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", dod.getRandomGroupEntityBase());
+        long count = GroupEntityBase.countGroupEntityBases();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<GroupEntity> result = GroupEntity.findGroupEntityEntries(firstResult, maxResults);
-        Assert.assertNotNull("Find entries method for 'GroupEntity' illegally returned null", result);
-        Assert.assertEquals("Find entries method for 'GroupEntity' returned an incorrect number of entries", count, result.size());
+        List<GroupEntityBase> result = GroupEntityBase.findGroupEntityBaseEntries(firstResult, maxResults);
+        Assert.assertNotNull("Find entries method for 'GroupEntityBase' illegally returned null", result);
+        Assert.assertEquals("Find entries method for 'GroupEntityBase' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void GroupIntegrationTest.testFlush() {
-        GroupEntity obj = dod.getRandomGroupEntity();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", obj);
+        GroupEntityBase obj = dod.getRandomGroupEntityBase();
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to provide an identifier", id);
-        obj = GroupEntity.findGroupEntity(id);
-        Assert.assertNotNull("Find method for 'GroupEntity' illegally returned null for id '" + id + "'", obj);
-        boolean modified =  dod.modifyGroupEntity(obj);
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to provide an identifier", id);
+        obj = GroupEntityBase.findGroupEntityBase(id);
+        Assert.assertNotNull("Find method for 'GroupEntityBase' illegally returned null for id '" + id + "'", obj);
+        boolean modified =  dod.modifyGroupEntityBase(obj);
         Integer currentVersion = obj.getVersion();
         obj.flush();
-        Assert.assertTrue("Version for 'GroupEntity' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'GroupEntityBase' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void GroupIntegrationTest.testMergeUpdate() {
-        GroupEntity obj = dod.getRandomGroupEntity();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", obj);
+        GroupEntityBase obj = dod.getRandomGroupEntityBase();
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to provide an identifier", id);
-        obj = GroupEntity.findGroupEntity(id);
-        boolean modified =  dod.modifyGroupEntity(obj);
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to provide an identifier", id);
+        obj = GroupEntityBase.findGroupEntityBase(id);
+        boolean modified =  dod.modifyGroupEntityBase(obj);
         Integer currentVersion = obj.getVersion();
-        GroupEntity merged = (GroupEntity)obj.merge();
+        GroupEntityBase merged = (GroupEntityBase)obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
-        Assert.assertTrue("Version for 'GroupEntity' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'GroupEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void GroupIntegrationTest.testPersist() {
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", dod.getRandomGroupEntity());
-        GroupEntity obj = dod.getNewTransientGroupEntity(Integer.MAX_VALUE);
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to provide a new transient entity", obj);
-        Assert.assertNull("Expected 'GroupEntity' identifier to be null", obj.getId());
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", dod.getRandomGroupEntityBase());
+        GroupEntityBase obj = dod.getNewTransientGroupEntityBase(Integer.MAX_VALUE);
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to provide a new transient entity", obj);
+        Assert.assertNull("Expected 'GroupEntityBase' identifier to be null", obj.getId());
         obj.persist();
         obj.flush();
-        Assert.assertNotNull("Expected 'GroupEntity' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'GroupEntityBase' identifier to no longer be null", obj.getId());
     }
     
     @Test
     public void GroupIntegrationTest.testRemove() {
-        GroupEntity obj = dod.getRandomGroupEntity();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to initialize correctly", obj);
+        GroupEntityBase obj = dod.getRandomGroupEntityBase();
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'GroupEntity' failed to provide an identifier", id);
-        obj = GroupEntity.findGroupEntity(id);
+        Assert.assertNotNull("Data on demand for 'GroupEntityBase' failed to provide an identifier", id);
+        obj = GroupEntityBase.findGroupEntityBase(id);
         obj.remove();
         obj.flush();
-        Assert.assertNull("Failed to remove 'GroupEntity' with identifier '" + id + "'", GroupEntity.findGroupEntity(id));
+        Assert.assertNull("Failed to remove 'GroupEntityBase' with identifier '" + id + "'", GroupEntityBase.findGroupEntityBase(id));
     }
     
 }

@@ -6,7 +6,7 @@ package io.algorithms.entity;
 import io.algorithms.entity.FieldEntityBase;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect FieldEntity_Roo_Configurable {
+privileged aspect FieldEntityBase_Roo_Configurable {
     
     declare @type: FieldEntityBase: @Configurable;
     

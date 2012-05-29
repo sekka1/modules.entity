@@ -4,7 +4,7 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.UserDataOnDemand;
-import io.algorithms.entity.UserEntity;
+import io.algorithms.entity.UserEntityBase;
 import io.algorithms.entity.UserIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
@@ -27,95 +27,95 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     private UserDataOnDemand UserIntegrationTest.dod;
     
     @Test
-    public void UserIntegrationTest.testCountUserEntitys() {
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", dod.getRandomUserEntity());
-        long count = UserEntity.countUserEntitys();
-        Assert.assertTrue("Counter for 'UserEntity' incorrectly reported there were no entries", count > 0);
+    public void UserIntegrationTest.testCountUserEntityBases() {
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", dod.getRandomUserEntityBase());
+        long count = UserEntityBase.countUserEntityBases();
+        Assert.assertTrue("Counter for 'UserEntityBase' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void UserIntegrationTest.testFindUserEntity() {
-        UserEntity obj = dod.getRandomUserEntity();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", obj);
+    public void UserIntegrationTest.testFindUserEntityBase() {
+        UserEntityBase obj = dod.getRandomUserEntityBase();
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to provide an identifier", id);
-        obj = UserEntity.findUserEntity(id);
-        Assert.assertNotNull("Find method for 'UserEntity' illegally returned null for id '" + id + "'", obj);
-        Assert.assertEquals("Find method for 'UserEntity' returned the incorrect identifier", id, obj.getId());
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to provide an identifier", id);
+        obj = UserEntityBase.findUserEntityBase(id);
+        Assert.assertNotNull("Find method for 'UserEntityBase' illegally returned null for id '" + id + "'", obj);
+        Assert.assertEquals("Find method for 'UserEntityBase' returned the incorrect identifier", id, obj.getId());
     }
     
     @Test
-    public void UserIntegrationTest.testFindAllUserEntitys() {
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", dod.getRandomUserEntity());
-        long count = UserEntity.countUserEntitys();
-        Assert.assertTrue("Too expensive to perform a find all test for 'UserEntity', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<UserEntity> result = UserEntity.findAllUserEntitys();
-        Assert.assertNotNull("Find all method for 'UserEntity' illegally returned null", result);
-        Assert.assertTrue("Find all method for 'UserEntity' failed to return any data", result.size() > 0);
+    public void UserIntegrationTest.testFindAllUserEntityBases() {
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", dod.getRandomUserEntityBase());
+        long count = UserEntityBase.countUserEntityBases();
+        Assert.assertTrue("Too expensive to perform a find all test for 'UserEntityBase', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
+        List<UserEntityBase> result = UserEntityBase.findAllUserEntityBases();
+        Assert.assertNotNull("Find all method for 'UserEntityBase' illegally returned null", result);
+        Assert.assertTrue("Find all method for 'UserEntityBase' failed to return any data", result.size() > 0);
     }
     
     @Test
-    public void UserIntegrationTest.testFindUserEntityEntries() {
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", dod.getRandomUserEntity());
-        long count = UserEntity.countUserEntitys();
+    public void UserIntegrationTest.testFindUserEntityBaseEntries() {
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", dod.getRandomUserEntityBase());
+        long count = UserEntityBase.countUserEntityBases();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<UserEntity> result = UserEntity.findUserEntityEntries(firstResult, maxResults);
-        Assert.assertNotNull("Find entries method for 'UserEntity' illegally returned null", result);
-        Assert.assertEquals("Find entries method for 'UserEntity' returned an incorrect number of entries", count, result.size());
+        List<UserEntityBase> result = UserEntityBase.findUserEntityBaseEntries(firstResult, maxResults);
+        Assert.assertNotNull("Find entries method for 'UserEntityBase' illegally returned null", result);
+        Assert.assertEquals("Find entries method for 'UserEntityBase' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void UserIntegrationTest.testFlush() {
-        UserEntity obj = dod.getRandomUserEntity();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", obj);
+        UserEntityBase obj = dod.getRandomUserEntityBase();
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to provide an identifier", id);
-        obj = UserEntity.findUserEntity(id);
-        Assert.assertNotNull("Find method for 'UserEntity' illegally returned null for id '" + id + "'", obj);
-        boolean modified =  dod.modifyUserEntity(obj);
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to provide an identifier", id);
+        obj = UserEntityBase.findUserEntityBase(id);
+        Assert.assertNotNull("Find method for 'UserEntityBase' illegally returned null for id '" + id + "'", obj);
+        boolean modified =  dod.modifyUserEntityBase(obj);
         Integer currentVersion = obj.getVersion();
         obj.flush();
-        Assert.assertTrue("Version for 'UserEntity' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'UserEntityBase' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void UserIntegrationTest.testMergeUpdate() {
-        UserEntity obj = dod.getRandomUserEntity();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", obj);
+        UserEntityBase obj = dod.getRandomUserEntityBase();
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to provide an identifier", id);
-        obj = UserEntity.findUserEntity(id);
-        boolean modified =  dod.modifyUserEntity(obj);
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to provide an identifier", id);
+        obj = UserEntityBase.findUserEntityBase(id);
+        boolean modified =  dod.modifyUserEntityBase(obj);
         Integer currentVersion = obj.getVersion();
-        UserEntity merged = (UserEntity)obj.merge();
+        UserEntityBase merged = (UserEntityBase)obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
-        Assert.assertTrue("Version for 'UserEntity' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'UserEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void UserIntegrationTest.testPersist() {
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", dod.getRandomUserEntity());
-        UserEntity obj = dod.getNewTransientUserEntity(Integer.MAX_VALUE);
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to provide a new transient entity", obj);
-        Assert.assertNull("Expected 'UserEntity' identifier to be null", obj.getId());
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", dod.getRandomUserEntityBase());
+        UserEntityBase obj = dod.getNewTransientUserEntityBase(Integer.MAX_VALUE);
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to provide a new transient entity", obj);
+        Assert.assertNull("Expected 'UserEntityBase' identifier to be null", obj.getId());
         obj.persist();
         obj.flush();
-        Assert.assertNotNull("Expected 'UserEntity' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'UserEntityBase' identifier to no longer be null", obj.getId());
     }
     
     @Test
     public void UserIntegrationTest.testRemove() {
-        UserEntity obj = dod.getRandomUserEntity();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to initialize correctly", obj);
+        UserEntityBase obj = dod.getRandomUserEntityBase();
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'UserEntity' failed to provide an identifier", id);
-        obj = UserEntity.findUserEntity(id);
+        Assert.assertNotNull("Data on demand for 'UserEntityBase' failed to provide an identifier", id);
+        obj = UserEntityBase.findUserEntityBase(id);
         obj.remove();
         obj.flush();
-        Assert.assertNull("Failed to remove 'UserEntity' with identifier '" + id + "'", UserEntity.findUserEntity(id));
+        Assert.assertNull("Failed to remove 'UserEntityBase' with identifier '" + id + "'", UserEntityBase.findUserEntityBase(id));
     }
     
 }

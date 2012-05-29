@@ -12,7 +12,7 @@ package io.algorithms.entity;
 /**
  * Represents a field
  */
-public interface FieldEntity {
+public interface FieldEntity extends Entity {
 
     public abstract DataType getDataType();
 

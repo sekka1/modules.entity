@@ -3,13 +3,13 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.JobEntity;
+import io.algorithms.entity.FieldEntityBase;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect JobEntity_Roo_ToString {
+privileged aspect FieldEntityBase_Roo_ToString {
     
-    public String JobEntity.toString() {
+    public String FieldEntityBase.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

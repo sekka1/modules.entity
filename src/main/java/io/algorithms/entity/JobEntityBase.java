@@ -10,24 +10,24 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @XmlRootElement
-public class FieldEntityBase extends EntityBase implements FieldEntity {
+public class JobEntityBase extends EntityBase implements JobEntity {
 
     @Enumerated(EnumType.STRING)
-    private DataType dataType;
-    
+    private JobStatus status;
+
     /* (non-Javadoc)
-     * @see io.algorithms.entity.FieldEntityI#getDataType()
+     * @see io.algorithms.entity.JobEntityI#getStatus()
      */
     @Override
-    public DataType getDataType() {
-        return this.dataType;
+    public JobStatus getStatus() {
+        return this.status;
     }
     
     /* (non-Javadoc)
-     * @see io.algorithms.entity.FieldEntityI#setDataType(io.algorithms.entity.DataType)
+     * @see io.algorithms.entity.JobEntityI#setStatus(io.algorithms.entity.JobStatus)
      */
     @Override
-    public void setDataType(DataType dataType) {
-        this.dataType = dataType;
+    public void setStatus(JobStatus status) {
+        this.status = status;
     }
 }

@@ -12,9 +12,9 @@ package io.algorithms.entity;
 import java.util.List;
 
 /**
- * 
+ * Interface for dataset.
  */
-public interface DataSetEntity {
+public interface DataSetEntity extends Entity {
 
     public abstract long getSize();
 

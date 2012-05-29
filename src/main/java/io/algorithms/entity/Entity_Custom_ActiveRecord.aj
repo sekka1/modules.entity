@@ -8,19 +8,6 @@ package io.algorithms.entity;
 import io.algorithms.entity.EntityBase;
 
 privileged aspect Entity_Custom_ActiveRecord {
-    /**
-     * Find entity by URI.
-     * @param type
-     * @param uri
-     * @return
-     */
-    public static <T extends EntityBase> T EntityBase.findByURI(Class<T> type, String uri) {
-        try {
-            return type.cast(EntityBase.entityManager().createQuery("SELECT o FROM " + type.getName() + " o where uri = :uri").setParameter("uri", uri).getSingleResult());
-        } catch (Exception e) {
-            return null;
-        }
-    }
     
     /**
      * When an entity is persisted

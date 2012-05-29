@@ -26,7 +26,7 @@ privileged aspect FieldDataOnDemand_Roo_DataOnDemand {
     
     private List<FieldEntityBase> FieldDataOnDemand.data;
     
-    public FieldEntityBase FieldDataOnDemand.getNewTransientFieldEntity(int index) {
+    public FieldEntityBase FieldDataOnDemand.getNewTransientFieldEntityBase(int index) {
         FieldEntityBase obj = new FieldEntityBase();
         setCreateTime(obj, index);
         setDataType(obj, index);
@@ -91,7 +91,7 @@ privileged aspect FieldDataOnDemand_Roo_DataOnDemand {
         obj.setUri(uri);
     }
     
-    public FieldEntityBase FieldDataOnDemand.getSpecificFieldEntity(int index) {
+    public FieldEntityBase FieldDataOnDemand.getSpecificFieldEntityBase(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -101,26 +101,26 @@ privileged aspect FieldDataOnDemand_Roo_DataOnDemand {
         }
         FieldEntityBase obj = data.get(index);
         Long id = obj.getId();
-        return FieldEntityBase.findFieldEntity(id);
+        return FieldEntityBase.findFieldEntityBase(id);
     }
     
-    public FieldEntityBase FieldDataOnDemand.getRandomFieldEntity() {
+    public FieldEntityBase FieldDataOnDemand.getRandomFieldEntityBase() {
         init();
         FieldEntityBase obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return FieldEntityBase.findFieldEntity(id);
+        return FieldEntityBase.findFieldEntityBase(id);
     }
     
-    public boolean FieldDataOnDemand.modifyFieldEntity(FieldEntityBase obj) {
+    public boolean FieldDataOnDemand.modifyFieldEntityBase(FieldEntityBase obj) {
         return false;
     }
     
     public void FieldDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = FieldEntityBase.findFieldEntityEntries(from, to);
+        data = FieldEntityBase.findFieldEntityBaseEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'FieldEntity' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'FieldEntityBase' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
@@ -128,7 +128,7 @@ privileged aspect FieldDataOnDemand_Roo_DataOnDemand {
         
         data = new ArrayList<FieldEntityBase>();
         for (int i = 0; i < 10; i++) {
-            FieldEntityBase obj = getNewTransientFieldEntity(i);
+            FieldEntityBase obj = getNewTransientFieldEntityBase(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

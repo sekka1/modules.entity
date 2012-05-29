@@ -4,7 +4,7 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.UserDataOnDemand;
-import io.algorithms.entity.UserEntity;
+import io.algorithms.entity.UserEntityBase;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,10 +23,10 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     
     private Random UserDataOnDemand.rnd = new SecureRandom();
     
-    private List<UserEntity> UserDataOnDemand.data;
+    private List<UserEntityBase> UserDataOnDemand.data;
     
-    public UserEntity UserDataOnDemand.getNewTransientUserEntity(int index) {
-        UserEntity obj = new UserEntity();
+    public UserEntityBase UserDataOnDemand.getNewTransientUserEntityBase(int index) {
+        UserEntityBase obj = new UserEntityBase();
         setCreateTime(obj, index);
         setDescription(obj, index);
         setLastModifiedTime(obj, index);
@@ -39,52 +39,52 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         return obj;
     }
     
-    public void UserDataOnDemand.setCreateTime(UserEntity obj, int index) {
+    public void UserDataOnDemand.setCreateTime(UserEntityBase obj, int index) {
         Date createTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreateTime(createTime);
     }
     
-    public void UserDataOnDemand.setDescription(UserEntity obj, int index) {
+    public void UserDataOnDemand.setDescription(UserEntityBase obj, int index) {
         String description = "description_" + index;
         obj.setDescription(description);
     }
     
-    public void UserDataOnDemand.setLastModifiedTime(UserEntity obj, int index) {
+    public void UserDataOnDemand.setLastModifiedTime(UserEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
     }
     
-    public void UserDataOnDemand.setLastModifiedUserUri(UserEntity obj, int index) {
+    public void UserDataOnDemand.setLastModifiedUserUri(UserEntityBase obj, int index) {
         String lastModifiedUserUri = "lastModifiedUserUri_" + index;
         obj.setLastModifiedUserUri(lastModifiedUserUri);
     }
     
-    public void UserDataOnDemand.setName(UserEntity obj, int index) {
+    public void UserDataOnDemand.setName(UserEntityBase obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void UserDataOnDemand.setOwnerGroupUri(UserEntity obj, int index) {
+    public void UserDataOnDemand.setOwnerGroupUri(UserEntityBase obj, int index) {
         String ownerGroupUri = "ownerGroupUri_" + index;
         obj.setOwnerGroupUri(ownerGroupUri);
     }
     
-    public void UserDataOnDemand.setOwnerUri(UserEntity obj, int index) {
+    public void UserDataOnDemand.setOwnerUri(UserEntityBase obj, int index) {
         String ownerUri = "ownerUri_" + index;
         obj.setOwnerUri(ownerUri);
     }
     
-    public void UserDataOnDemand.setParentGroupUri(UserEntity obj, int index) {
+    public void UserDataOnDemand.setParentGroupUri(UserEntityBase obj, int index) {
         String parentGroupUri = "parentGroupUri_" + index;
         obj.setParentGroupUri(parentGroupUri);
     }
     
-    public void UserDataOnDemand.setUri(UserEntity obj, int index) {
+    public void UserDataOnDemand.setUri(UserEntityBase obj, int index) {
         String uri = "uri_" + index;
         obj.setUri(uri);
     }
     
-    public UserEntity UserDataOnDemand.getSpecificUserEntity(int index) {
+    public UserEntityBase UserDataOnDemand.getSpecificUserEntityBase(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -92,36 +92,36 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        UserEntity obj = data.get(index);
+        UserEntityBase obj = data.get(index);
         Long id = obj.getId();
-        return UserEntity.findUserEntity(id);
+        return UserEntityBase.findUserEntityBase(id);
     }
     
-    public UserEntity UserDataOnDemand.getRandomUserEntity() {
+    public UserEntityBase UserDataOnDemand.getRandomUserEntityBase() {
         init();
-        UserEntity obj = data.get(rnd.nextInt(data.size()));
+        UserEntityBase obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return UserEntity.findUserEntity(id);
+        return UserEntityBase.findUserEntityBase(id);
     }
     
-    public boolean UserDataOnDemand.modifyUserEntity(UserEntity obj) {
+    public boolean UserDataOnDemand.modifyUserEntityBase(UserEntityBase obj) {
         return false;
     }
     
     public void UserDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = UserEntity.findUserEntityEntries(from, to);
+        data = UserEntityBase.findUserEntityBaseEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'UserEntity' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'UserEntityBase' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<UserEntity>();
+        data = new ArrayList<UserEntityBase>();
         for (int i = 0; i < 10; i++) {
-            UserEntity obj = getNewTransientUserEntity(i);
+            UserEntityBase obj = getNewTransientUserEntityBase(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

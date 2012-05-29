@@ -203,4 +203,17 @@ public abstract class EntityBase implements Entity {
         }
     }
     
+    /**
+     * Find entity by URI.
+     * @param type
+     * @param uri
+     * @return
+     */
+    public static <T extends Entity> T findByURI(Class<T> type, String uri) {
+        try {
+            return type.cast(entityManager().createQuery("SELECT o FROM " + type.getName() + " o where uri = :uri").setParameter("uri", uri).getSingleResult());
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

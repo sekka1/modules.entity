@@ -4,7 +4,7 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.GroupDataOnDemand;
-import io.algorithms.entity.GroupEntity;
+import io.algorithms.entity.GroupEntityBase;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,10 +23,10 @@ privileged aspect GroupDataOnDemand_Roo_DataOnDemand {
     
     private Random GroupDataOnDemand.rnd = new SecureRandom();
     
-    private List<GroupEntity> GroupDataOnDemand.data;
+    private List<GroupEntityBase> GroupDataOnDemand.data;
     
-    public GroupEntity GroupDataOnDemand.getNewTransientGroupEntity(int index) {
-        GroupEntity obj = new GroupEntity();
+    public GroupEntityBase GroupDataOnDemand.getNewTransientGroupEntityBase(int index) {
+        GroupEntityBase obj = new GroupEntityBase();
         setCreateTime(obj, index);
         setDescription(obj, index);
         setLastModifiedTime(obj, index);
@@ -39,52 +39,52 @@ privileged aspect GroupDataOnDemand_Roo_DataOnDemand {
         return obj;
     }
     
-    public void GroupDataOnDemand.setCreateTime(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setCreateTime(GroupEntityBase obj, int index) {
         Date createTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreateTime(createTime);
     }
     
-    public void GroupDataOnDemand.setDescription(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setDescription(GroupEntityBase obj, int index) {
         String description = "description_" + index;
         obj.setDescription(description);
     }
     
-    public void GroupDataOnDemand.setLastModifiedTime(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setLastModifiedTime(GroupEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
     }
     
-    public void GroupDataOnDemand.setLastModifiedUserUri(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setLastModifiedUserUri(GroupEntityBase obj, int index) {
         String lastModifiedUserUri = "lastModifiedUserUri_" + index;
         obj.setLastModifiedUserUri(lastModifiedUserUri);
     }
     
-    public void GroupDataOnDemand.setName(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setName(GroupEntityBase obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void GroupDataOnDemand.setOwnerGroupUri(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setOwnerGroupUri(GroupEntityBase obj, int index) {
         String ownerGroupUri = "ownerGroupUri_" + index;
         obj.setOwnerGroupUri(ownerGroupUri);
     }
     
-    public void GroupDataOnDemand.setOwnerUri(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setOwnerUri(GroupEntityBase obj, int index) {
         String ownerUri = "ownerUri_" + index;
         obj.setOwnerUri(ownerUri);
     }
     
-    public void GroupDataOnDemand.setParentGroupUri(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setParentGroupUri(GroupEntityBase obj, int index) {
         String parentGroupUri = "parentGroupUri_" + index;
         obj.setParentGroupUri(parentGroupUri);
     }
     
-    public void GroupDataOnDemand.setUri(GroupEntity obj, int index) {
+    public void GroupDataOnDemand.setUri(GroupEntityBase obj, int index) {
         String uri = "uri_" + index;
         obj.setUri(uri);
     }
     
-    public GroupEntity GroupDataOnDemand.getSpecificGroupEntity(int index) {
+    public GroupEntityBase GroupDataOnDemand.getSpecificGroupEntityBase(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -92,36 +92,36 @@ privileged aspect GroupDataOnDemand_Roo_DataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        GroupEntity obj = data.get(index);
+        GroupEntityBase obj = data.get(index);
         Long id = obj.getId();
-        return GroupEntity.findGroupEntity(id);
+        return GroupEntityBase.findGroupEntityBase(id);
     }
     
-    public GroupEntity GroupDataOnDemand.getRandomGroupEntity() {
+    public GroupEntityBase GroupDataOnDemand.getRandomGroupEntityBase() {
         init();
-        GroupEntity obj = data.get(rnd.nextInt(data.size()));
+        GroupEntityBase obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return GroupEntity.findGroupEntity(id);
+        return GroupEntityBase.findGroupEntityBase(id);
     }
     
-    public boolean GroupDataOnDemand.modifyGroupEntity(GroupEntity obj) {
+    public boolean GroupDataOnDemand.modifyGroupEntityBase(GroupEntityBase obj) {
         return false;
     }
     
     public void GroupDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = GroupEntity.findGroupEntityEntries(from, to);
+        data = GroupEntityBase.findGroupEntityBaseEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'GroupEntity' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'GroupEntityBase' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<GroupEntity>();
+        data = new ArrayList<GroupEntityBase>();
         for (int i = 0; i < 10; i++) {
-            GroupEntity obj = getNewTransientGroupEntity(i);
+            GroupEntityBase obj = getNewTransientGroupEntityBase(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Algorithm Entity interface.
  */
-public interface AlgorithmEntity {
+public interface AlgorithmEntity extends Entity {
 
     public abstract List<String> getCategories();
 

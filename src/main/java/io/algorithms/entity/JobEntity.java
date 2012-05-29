@@ -1,19 +1,21 @@
+/*
+ * Copyright 2001-2012 ArcSight, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of ArcSight, Inc.
+ * Use is subject to license terms.
+ *
+ * $Author: rajiv$
+ * $Date: May 29, 2012$
+ */
 package io.algorithms.entity;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.xml.bind.annotation.XmlRootElement;
+/**
+ * Represents a job.
+ */
+public interface JobEntity extends Entity {
 
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
+    public abstract JobStatus getStatus();
 
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
-@XmlRootElement
-public class JobEntity extends EntityBase {
+    public abstract void setStatus(JobStatus status);
 
-    @Enumerated(EnumType.STRING)
-    private JobStatus status;
 }

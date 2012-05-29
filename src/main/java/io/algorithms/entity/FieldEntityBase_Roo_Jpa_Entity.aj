@@ -3,11 +3,11 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.JobEntity;
+import io.algorithms.entity.FieldEntityBase;
 import javax.persistence.Entity;
 
-privileged aspect JobEntity_Roo_Jpa_Entity {
+privileged aspect FieldEntityBase_Roo_Jpa_Entity {
     
-    declare @type: JobEntity: @Entity;
+    declare @type: FieldEntityBase: @Entity;
     
 }

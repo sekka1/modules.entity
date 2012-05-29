@@ -1,32 +1,27 @@
+/*
+ * Copyright 2001-2012 ArcSight, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of ArcSight, Inc.
+ * Use is subject to license terms.
+ *
+ * $Author: rajiv$
+ * $Date: May 29, 2012$
+ */
 package io.algorithms.entity;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+/**
+ * Represents a user
+ */
+public interface UserEntity extends Entity {
 
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
+    public abstract Set<GroupEntityBase> getGroups();
 
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord(table = "user_table")
-@XmlRootElement
-public class UserEntity extends EntityBase {
+    public abstract void setGroups(Set<GroupEntityBase> groups);
 
-    @ElementCollection(targetClass=GroupEntity.class, fetch=FetchType.LAZY)
-    @OneToMany(cascade=CascadeType.ALL)
-    @OrderColumn
-    @XmlTransient
-    private Set<GroupEntity> groups;
-    
-    @ElementCollection(targetClass=String.class)
-    @XmlTransient
-    Set<String> authTokens;
+    public abstract Set<String> getAuthTokens();
+
+    public abstract void setAuthTokens(Set<String> authTokens);
+
 }

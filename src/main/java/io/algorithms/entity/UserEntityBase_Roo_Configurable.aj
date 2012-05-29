@@ -3,11 +3,11 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.JobEntity;
+import io.algorithms.entity.UserEntityBase;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect JobEntity_Roo_Configurable {
+privileged aspect UserEntityBase_Roo_Configurable {
     
-    declare @type: JobEntity: @Configurable;
+    declare @type: UserEntityBase: @Configurable;
     
 }

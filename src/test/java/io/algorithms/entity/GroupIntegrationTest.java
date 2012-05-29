@@ -3,7 +3,7 @@ package io.algorithms.entity;
 import org.junit.Test;
 import org.springframework.roo.addon.test.RooIntegrationTest;
 
-@RooIntegrationTest(entity = GroupEntity.class)
+@RooIntegrationTest(entity = GroupEntityBase.class)
 public class GroupIntegrationTest {
 
     @Test

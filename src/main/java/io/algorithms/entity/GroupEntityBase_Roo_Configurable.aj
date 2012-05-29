@@ -3,11 +3,11 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.DataSetEntityBase;
+import io.algorithms.entity.GroupEntityBase;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect DataSetEntity_Roo_Configurable {
+privileged aspect GroupEntityBase_Roo_Configurable {
     
-    declare @type: DataSetEntityBase: @Configurable;
+    declare @type: GroupEntityBase: @Configurable;
     
 }

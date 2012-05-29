@@ -12,13 +12,13 @@ privileged aspect UserEntity_Custom_ActiveRecord {
      * @param uri
      * @return
      */
-    public static UserEntity UserEntity.findUserEntityByAuthToken(String authToken) {
+    public static UserEntityBase UserEntityBase.findUserEntityByAuthToken(String authToken) {
         if (authToken == null) {
             return null;
         }
         
         try {
-            return (UserEntity) entityManager().createQuery("select u from User u where :authToken in elements(u.authTokens)")
+            return (UserEntityBase) entityManager().createQuery("select u from User u where :authToken in elements(u.authTokens)")
                     .setParameter("authToken", authToken).getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();

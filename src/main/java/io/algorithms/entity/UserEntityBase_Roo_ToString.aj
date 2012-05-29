@@ -3,13 +3,13 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.DataSetEntityBase;
+import io.algorithms.entity.UserEntityBase;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect DataSetEntity_Roo_ToString {
+privileged aspect UserEntityBase_Roo_ToString {
     
-    public String DataSetEntityBase.toString() {
+    public String UserEntityBase.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

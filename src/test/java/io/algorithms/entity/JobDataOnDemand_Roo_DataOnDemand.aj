@@ -3,9 +3,9 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.DataFormat;
-import io.algorithms.entity.DataSetDataOnDemand;
-import io.algorithms.entity.DataSetEntityBase;
+import io.algorithms.entity.JobDataOnDemand;
+import io.algorithms.entity.JobEntityBase;
+import io.algorithms.entity.JobStatus;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,86 +18,80 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
-privileged aspect DataSetDataOnDemand_Roo_DataOnDemand {
+privileged aspect JobDataOnDemand_Roo_DataOnDemand {
     
-    declare @type: DataSetDataOnDemand: @Component;
+    declare @type: JobDataOnDemand: @Component;
     
-    private Random DataSetDataOnDemand.rnd = new SecureRandom();
+    private Random JobDataOnDemand.rnd = new SecureRandom();
     
-    private List<DataSetEntityBase> DataSetDataOnDemand.data;
+    private List<JobEntityBase> JobDataOnDemand.data;
     
-    public DataSetEntityBase DataSetDataOnDemand.getNewTransientDataSetEntityBase(int index) {
-        DataSetEntityBase obj = new DataSetEntityBase();
+    public JobEntityBase JobDataOnDemand.getNewTransientJobEntityBase(int index) {
+        JobEntityBase obj = new JobEntityBase();
         setCreateTime(obj, index);
         setDescription(obj, index);
-        setFormat(obj, index);
         setLastModifiedTime(obj, index);
         setLastModifiedUserUri(obj, index);
         setName(obj, index);
         setOwnerGroupUri(obj, index);
         setOwnerUri(obj, index);
         setParentGroupUri(obj, index);
-        setSize(obj, index);
+        setStatus(obj, index);
         setUri(obj, index);
         return obj;
     }
     
-    public void DataSetDataOnDemand.setCreateTime(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setCreateTime(JobEntityBase obj, int index) {
         Date createTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreateTime(createTime);
     }
     
-    public void DataSetDataOnDemand.setDescription(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setDescription(JobEntityBase obj, int index) {
         String description = "description_" + index;
         obj.setDescription(description);
     }
     
-    public void DataSetDataOnDemand.setFormat(DataSetEntityBase obj, int index) {
-        DataFormat format = DataFormat.class.getEnumConstants()[0];
-        obj.setFormat(format);
-    }
-    
-    public void DataSetDataOnDemand.setLastModifiedTime(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setLastModifiedTime(JobEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
     }
     
-    public void DataSetDataOnDemand.setLastModifiedUserUri(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setLastModifiedUserUri(JobEntityBase obj, int index) {
         String lastModifiedUserUri = "lastModifiedUserUri_" + index;
         obj.setLastModifiedUserUri(lastModifiedUserUri);
     }
     
-    public void DataSetDataOnDemand.setName(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setName(JobEntityBase obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void DataSetDataOnDemand.setOwnerGroupUri(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setOwnerGroupUri(JobEntityBase obj, int index) {
         String ownerGroupUri = "ownerGroupUri_" + index;
         obj.setOwnerGroupUri(ownerGroupUri);
     }
     
-    public void DataSetDataOnDemand.setOwnerUri(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setOwnerUri(JobEntityBase obj, int index) {
         String ownerUri = "ownerUri_" + index;
         obj.setOwnerUri(ownerUri);
     }
     
-    public void DataSetDataOnDemand.setParentGroupUri(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setParentGroupUri(JobEntityBase obj, int index) {
         String parentGroupUri = "parentGroupUri_" + index;
         obj.setParentGroupUri(parentGroupUri);
     }
     
-    public void DataSetDataOnDemand.setSize(DataSetEntityBase obj, int index) {
-        Long size = new Integer(index).longValue();
-        obj.setSize(size);
+    public void JobDataOnDemand.setStatus(JobEntityBase obj, int index) {
+        JobStatus status = JobStatus.class.getEnumConstants()[0];
+        obj.setStatus(status);
     }
     
-    public void DataSetDataOnDemand.setUri(DataSetEntityBase obj, int index) {
+    public void JobDataOnDemand.setUri(JobEntityBase obj, int index) {
         String uri = "uri_" + index;
         obj.setUri(uri);
     }
     
-    public DataSetEntityBase DataSetDataOnDemand.getSpecificDataSetEntityBase(int index) {
+    public JobEntityBase JobDataOnDemand.getSpecificJobEntityBase(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -105,36 +99,36 @@ privileged aspect DataSetDataOnDemand_Roo_DataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        DataSetEntityBase obj = data.get(index);
+        JobEntityBase obj = data.get(index);
         Long id = obj.getId();
-        return DataSetEntityBase.findDataSetEntityBase(id);
+        return JobEntityBase.findJobEntityBase(id);
     }
     
-    public DataSetEntityBase DataSetDataOnDemand.getRandomDataSetEntityBase() {
+    public JobEntityBase JobDataOnDemand.getRandomJobEntityBase() {
         init();
-        DataSetEntityBase obj = data.get(rnd.nextInt(data.size()));
+        JobEntityBase obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return DataSetEntityBase.findDataSetEntityBase(id);
+        return JobEntityBase.findJobEntityBase(id);
     }
     
-    public boolean DataSetDataOnDemand.modifyDataSetEntityBase(DataSetEntityBase obj) {
+    public boolean JobDataOnDemand.modifyJobEntityBase(JobEntityBase obj) {
         return false;
     }
     
-    public void DataSetDataOnDemand.init() {
+    public void JobDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = DataSetEntityBase.findDataSetEntityBaseEntries(from, to);
+        data = JobEntityBase.findJobEntityBaseEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'DataSetEntityBase' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'JobEntityBase' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<DataSetEntityBase>();
+        data = new ArrayList<JobEntityBase>();
         for (int i = 0; i < 10; i++) {
-            DataSetEntityBase obj = getNewTransientDataSetEntityBase(i);
+            JobEntityBase obj = getNewTransientJobEntityBase(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

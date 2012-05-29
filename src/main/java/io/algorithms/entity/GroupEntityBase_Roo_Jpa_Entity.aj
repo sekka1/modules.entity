@@ -3,14 +3,14 @@
 
 package io.algorithms.entity;
 
-import io.algorithms.entity.UserEntity;
+import io.algorithms.entity.GroupEntityBase;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-privileged aspect UserEntity_Roo_Jpa_Entity {
+privileged aspect GroupEntityBase_Roo_Jpa_Entity {
     
-    declare @type: UserEntity: @Entity;
+    declare @type: GroupEntityBase: @Entity;
     
-    declare @type: UserEntity: @Table(name = "user_table");
+    declare @type: GroupEntityBase: @Table(name = "group_table");
     
 }
