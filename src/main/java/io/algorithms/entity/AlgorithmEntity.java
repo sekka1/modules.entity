@@ -11,16 +11,7 @@ import java.util.List;
  */
 public interface AlgorithmEntity extends Entity {
 
-    public abstract List<String> getCategories();
+    List<String> getCategories();
 
-    public abstract void setCategories(List<String> categories);
-
-    public abstract List<DataSetEntityBase> getInputDataSets();
-
-    public abstract void setInputDataSets(List<DataSetEntityBase> inputDataSets);
-
-    public abstract List<DataSetEntityBase> getOutputDataSets();
-
-    public abstract void setOutputDataSets(List<DataSetEntityBase> outputDataSets);
-
+    void setCategories(List<String> categories);
 }

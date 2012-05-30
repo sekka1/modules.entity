@@ -1,12 +1,7 @@
 /*
- * Copyright 2001-2012 ArcSight, Inc. All Rights Reserved.
- *
- * This software is the proprietary information of ArcSight, Inc.
- * Use is subject to license terms.
- *
- * $Author: rajiv$
- * $Date: May 29, 2012$
- */
+* Copyright 2012 Algorithms.io. All Rights Reserved.
+* $Author: rajiv$
+*/
 package io.algorithms.entity;
 
 import java.util.List;
