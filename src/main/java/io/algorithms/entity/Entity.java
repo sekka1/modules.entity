@@ -12,56 +12,56 @@ import java.util.Set;
  */
 public interface Entity {
 
-    public Long getId();
+    Long getId();
     
-    public void setId(Long id);
+    void setId(Long id);
 
-    public String getName();
+    String getName();
     
-    public void setName(String name);
+    void setName(String name);
     
-    public String getDescription();
+    String getDescription();
     
-    public void setDescription(String description);
+    void setDescription(String description);
     
-    public Date getCreateTime();
+    Date getCreateTime();
     
-    public void setCreateTime(Date createTime);
+    void setCreateTime(Date createTime);
     
-    public Date getLastModifiedTime();
+    Date getLastModifiedTime();
     
-    public void setLastModifiedTime(Date lastModifiedTime);
+    void setLastModifiedTime(Date lastModifiedTime);
     
-    public String getUri();
+    String getUri();
     
-    public void setUri(String uri);
+    void setUri(String uri);
     
-    public UserEntity getOwner();
+    UserEntity getOwner();
     
-    public void setOwner(UserEntity owner);
+    void setOwner(UserEntity owner);
     
-    public GroupEntity getOwnerGroup();
+    GroupEntity getOwnerGroup();
     
-    public void setOwnerGroup(GroupEntity ownerGroup);
+    void setOwnerGroup(GroupEntity ownerGroup);
     
-    public void setParentGroup(GroupEntity group);
+    void setParentGroup(GroupEntity group);
 
-    public GroupEntity getParentGroup();
+    GroupEntity getParentGroup();
 
-    public UserEntity getLastModifiedUser();
+    UserEntity getLastModifiedUser();
     
-    public void setLastModifiedUser(UserEntity lastModifiedUser);
+    void setLastModifiedUser(UserEntity lastModifiedUser);
     
-    public Set<Permission> getOwnerPermissions();
+    Set<Permission> getOwnerPermissions();
     
-    public void setOwnerPermissions(Set<Permission> ownerPermissions);
+    void setOwnerPermissions(Set<Permission> ownerPermissions);
     
-    public Set<Permission> getOwnerGroupPermissions();
+    Set<Permission> getOwnerGroupPermissions();
     
-    public void setOwnerGroupPermissions(Set<Permission> ownerGroupPermissions);
+    void setOwnerGroupPermissions(Set<Permission> ownerGroupPermissions);
     
-    public Set<Permission> getOthersPermissions();
+    Set<Permission> getOthersPermissions();
     
-    public void setOthersPermissions(Set<Permission> othersPermissions);
+    void setOthersPermissions(Set<Permission> othersPermissions);
 
 }

@@ -9,8 +9,8 @@ package io.algorithms.entity;
  */
 public interface FieldEntity extends Entity {
 
-    public abstract DataType getDataType();
+    DataType getDataType();
 
-    public abstract void setDataType(DataType dataType);
+    void setDataType(DataType dataType);
 
 }

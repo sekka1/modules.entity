@@ -9,8 +9,8 @@ package io.algorithms.entity;
  */
 public interface JobEntity extends Entity {
 
-    public abstract JobStatus getStatus();
+    JobStatus getStatus();
 
-    public abstract void setStatus(JobStatus status);
+    void setStatus(JobStatus status);
 
 }

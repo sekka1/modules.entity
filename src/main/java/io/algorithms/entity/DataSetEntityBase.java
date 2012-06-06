@@ -30,10 +30,6 @@ public class DataSetEntityBase extends EntityBase implements DataSetEntity {
     @OrderColumn
     private List<FieldEntityBase> fields;
 
-    @XmlTransient
-    @Transient
-    private DataStore dataStore;
-    
     /* (non-Javadoc)
      * @see io.algorithms.entity.DataSetEntityI#getSize()
      */
@@ -80,21 +76,5 @@ public class DataSetEntityBase extends EntityBase implements DataSetEntity {
     @Override
     public void setFields(List<FieldEntityBase> fields) {
         this.fields = fields;
-    }
-    
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#getDataStore()
-     */
-    @Override
-    public DataStore getDataStore() {
-        return this.dataStore;
-    }
-    
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#setDataStore(io.algorithms.entity.DataStore)
-     */
-    @Override
-    public void setDataStore(DataStore fileStore) {
-        this.dataStore = fileStore;
     }
 }
