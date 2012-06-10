@@ -11,12 +11,12 @@ import java.util.Set;
  */
 public interface UserEntity extends Entity {
 
-    public abstract Set<GroupEntityBase> getGroups();
+    Set<GroupEntityBase> getGroups();
 
-    public abstract void setGroups(Set<GroupEntityBase> groups);
+    void setGroups(Set<GroupEntityBase> groups);
 
-    public abstract Set<String> getAuthTokens();
+    Set<String> getAuthTokens();
 
-    public abstract void setAuthTokens(Set<String> authTokens);
+    void setAuthTokens(Set<String> authTokens);
 
 }

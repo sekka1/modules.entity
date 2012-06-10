@@ -11,18 +11,18 @@ import java.util.List;
  */
 public interface GroupEntity extends Entity {
 
-    public abstract List<EntityBase> getChildren();
+    List<EntityBase> getChildren();
 
-    public abstract void setChildren(List<EntityBase> children);
+    void setChildren(List<EntityBase> children);
 
-    public abstract void addChild(EntityBase child);
+    void addChild(EntityBase child);
 
-    public abstract void addChildren(List<EntityBase> children);
+    void addChildren(List<EntityBase> children);
 
-    public abstract void removeChild(EntityBase child);
+    void removeChild(EntityBase child);
 
-    public abstract void removeChildren(List<EntityBase> children);
+    void removeChildren(List<EntityBase> children);
 
-    public abstract void removeAll();
+    void removeAll();
 
 }

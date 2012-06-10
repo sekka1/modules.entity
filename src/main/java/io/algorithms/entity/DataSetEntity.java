@@ -11,20 +11,16 @@ import java.util.List;
  */
 public interface DataSetEntity extends Entity {
 
-    public abstract long getSize();
+    long getSize();
 
-    public abstract void setSize(long size);
+    void setSize(long size);
 
-    public abstract DataFormat getFormat();
+    DataFormat getFormat();
 
-    public abstract void setFormat(DataFormat format);
+    void setFormat(DataFormat format);
 
-    public abstract List<FieldEntityBase> getFields();
+    List<FieldEntityBase> getFields();
 
-    public abstract void setFields(List<FieldEntityBase> fields);
-
-    public abstract DataStore getDataStore();
-
-    public abstract void setDataStore(DataStore fileStore);
+    void setFields(List<FieldEntityBase> fields);
 
 }
