@@ -44,4 +44,7 @@ public interface DataSetEntity {
     
     void setDataSource(String dataSource);
 
+    public String getFileSystemName();
+
+    public void setFileSystemName(String fileSystemName);
 }

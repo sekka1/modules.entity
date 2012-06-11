@@ -36,6 +36,9 @@ public class DataSetEntityBase implements DataSetEntity {
     @Column(name="friendly_description")
     private String description;
 
+    @Column(name="filesystem_name")
+    private String fileSystemName;
+    
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="datetime_created")
     private Date createTime;
@@ -141,6 +144,14 @@ public class DataSetEntityBase implements DataSetEntity {
     @Override
     public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public String getFileSystemName() {
+        return fileSystemName;
+    }
+
+    public void setFileSystemName(String fileSystemName) {
+        this.fileSystemName = fileSystemName;
     }
     
 }
