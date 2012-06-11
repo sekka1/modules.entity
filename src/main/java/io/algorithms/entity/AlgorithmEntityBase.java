@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,9 +14,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(table="algorithms")
 @XmlRootElement
-@Table(name="algorithms")
 public class AlgorithmEntityBase implements AlgorithmEntity {
     @Column(name="class")
     private String category;

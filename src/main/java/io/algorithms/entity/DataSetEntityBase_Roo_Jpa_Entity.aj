@@ -6,11 +6,14 @@ package io.algorithms.entity;
 import io.algorithms.entity.DataSetEntityBase;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 privileged aspect DataSetEntityBase_Roo_Jpa_Entity {
     
     declare @type: DataSetEntityBase: @Entity;
+    
+    declare @type: DataSetEntityBase: @Table(name = "datasources");
     
     @Version
     @Column(name = "version")

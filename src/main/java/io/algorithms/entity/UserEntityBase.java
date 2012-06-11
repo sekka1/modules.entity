@@ -14,13 +14,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.context.annotation.Primary;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.stereotype.Repository;
 
 @RooToString
-@RooJpaActiveRecord(table = "user_table")
+@RooJpaActiveRecord(table = "users")
 @XmlRootElement
 @Primary
 @Repository
@@ -32,14 +31,18 @@ public class UserEntityBase implements UserEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "id")
+    @Column(name = "user_id_seq")
     private Long id;
     
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
-    private Date createTime, lastModifiedTime;
+    @Column(name="datetime_created")
+    private Date createTime;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datetime_modified")
+    private Date lastModifiedTime;
     
     @Override
     public Long getId() {

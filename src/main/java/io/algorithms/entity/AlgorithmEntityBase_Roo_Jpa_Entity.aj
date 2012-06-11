@@ -6,11 +6,14 @@ package io.algorithms.entity;
 import io.algorithms.entity.AlgorithmEntityBase;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 privileged aspect AlgorithmEntityBase_Roo_Jpa_Entity {
     
     declare @type: AlgorithmEntityBase: @Entity;
+    
+    declare @type: AlgorithmEntityBase: @Table(name = "algorithms");
     
     @Version
     @Column(name = "version")

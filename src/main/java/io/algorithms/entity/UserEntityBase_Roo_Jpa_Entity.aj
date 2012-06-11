@@ -13,7 +13,7 @@ privileged aspect UserEntityBase_Roo_Jpa_Entity {
     
     declare @type: UserEntityBase: @Entity;
     
-    declare @type: UserEntityBase: @Table(name = "user_table");
+    declare @type: UserEntityBase: @Table(name = "users");
     
     @Version
     @Column(name = "version")
