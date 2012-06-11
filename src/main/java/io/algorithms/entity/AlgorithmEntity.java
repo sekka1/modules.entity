@@ -36,8 +36,8 @@ public interface AlgorithmEntity {
 
     void setCategory(String categories);
     
-    Algorithm getAlgorithm();
+    Algorithm getAlgorithm() throws AlgorithmNotFoundException;
 
-    void setAlgorithm(Algorithm algorithm);
+    void setAlgorithm(Algorithm algorithm) throws AlgorithmDuplicateException, AlgorithmException;
     
 }

@@ -13,16 +13,12 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import org.springframework.stereotype.Repository;
 
 @RooToString
 @RooJpaActiveRecord(table = "users")
 @XmlRootElement
-@Primary
-@Repository
 public class UserEntityBase implements UserEntity {
 
     @ElementCollection(targetClass=String.class)

@@ -113,7 +113,7 @@ public class AlgorithmEntityBase implements AlgorithmEntity {
      * @see io.algorithms.entity.AlgorithmEntity#getAlgorithm()
      */
     @Override
-    public Algorithm getAlgorithm() {
+    public Algorithm getAlgorithm() throws AlgorithmNotFoundException {
         return AlgorithmRegister.getAlgorithm(implementation);
     }
 
@@ -121,7 +121,7 @@ public class AlgorithmEntityBase implements AlgorithmEntity {
      * @see io.algorithms.entity.AlgorithmEntity#setAlgorithm(io.algorithms.entity.Algorithm)
      */
     @Override
-    public void setAlgorithm(Algorithm algorithm) {
+    public void setAlgorithm(Algorithm algorithm) throws AlgorithmDuplicateException, AlgorithmException {
         AlgorithmRegister.registerAlgorithm(algorithm.getImplementationClass(), algorithm);
         this.implementation = algorithm.getImplementationClass();
     }
