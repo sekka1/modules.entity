@@ -5,9 +5,20 @@ package io.algorithms.entity;
 
 import io.algorithms.entity.UserEntityBase;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect UserEntityBase_Roo_Jpa_ActiveRecord {
+    
+    @PersistenceContext
+    transient EntityManager UserEntityBase.entityManager;
+    
+    public static final EntityManager UserEntityBase.entityManager() {
+        EntityManager em = new UserEntityBase().entityManager;
+        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+        return em;
+    }
     
     public static long UserEntityBase.countUserEntityBases() {
         return entityManager().createQuery("SELECT COUNT(o) FROM UserEntityBase o", Long.class).getSingleResult();
@@ -24,6 +35,35 @@ privileged aspect UserEntityBase_Roo_Jpa_ActiveRecord {
     
     public static List<UserEntityBase> UserEntityBase.findUserEntityBaseEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM UserEntityBase o", UserEntityBase.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    @Transactional
+    public void UserEntityBase.persist() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.persist(this);
+    }
+    
+    @Transactional
+    public void UserEntityBase.remove() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(this)) {
+            this.entityManager.remove(this);
+        } else {
+            UserEntityBase attached = UserEntityBase.findUserEntityBase(this.id);
+            this.entityManager.remove(attached);
+        }
+    }
+    
+    @Transactional
+    public void UserEntityBase.flush() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.flush();
+    }
+    
+    @Transactional
+    public void UserEntityBase.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
     }
     
     @Transactional

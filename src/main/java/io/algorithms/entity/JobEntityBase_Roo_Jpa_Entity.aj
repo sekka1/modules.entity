@@ -4,10 +4,24 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.JobEntityBase;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Version;
 
 privileged aspect JobEntityBase_Roo_Jpa_Entity {
     
     declare @type: JobEntityBase: @Entity;
+    
+    @Version
+    @Column(name = "version")
+    private Integer JobEntityBase.version;
+    
+    public Integer JobEntityBase.getVersion() {
+        return this.version;
+    }
+    
+    public void JobEntityBase.setVersion(Integer version) {
+        this.version = version;
+    }
     
 }

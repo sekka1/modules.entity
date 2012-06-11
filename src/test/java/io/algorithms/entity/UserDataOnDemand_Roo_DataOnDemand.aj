@@ -28,14 +28,8 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     public UserEntityBase UserDataOnDemand.getNewTransientUserEntityBase(int index) {
         UserEntityBase obj = new UserEntityBase();
         setCreateTime(obj, index);
-        setDescription(obj, index);
         setLastModifiedTime(obj, index);
-        setLastModifiedUserUri(obj, index);
         setName(obj, index);
-        setOwnerGroupUri(obj, index);
-        setOwnerUri(obj, index);
-        setParentGroupUri(obj, index);
-        setUri(obj, index);
         return obj;
     }
     
@@ -44,44 +38,14 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         obj.setCreateTime(createTime);
     }
     
-    public void UserDataOnDemand.setDescription(UserEntityBase obj, int index) {
-        String description = "description_" + index;
-        obj.setDescription(description);
-    }
-    
     public void UserDataOnDemand.setLastModifiedTime(UserEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
     }
     
-    public void UserDataOnDemand.setLastModifiedUserUri(UserEntityBase obj, int index) {
-        String lastModifiedUserUri = "lastModifiedUserUri_" + index;
-        obj.setLastModifiedUserUri(lastModifiedUserUri);
-    }
-    
     public void UserDataOnDemand.setName(UserEntityBase obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
-    }
-    
-    public void UserDataOnDemand.setOwnerGroupUri(UserEntityBase obj, int index) {
-        String ownerGroupUri = "ownerGroupUri_" + index;
-        obj.setOwnerGroupUri(ownerGroupUri);
-    }
-    
-    public void UserDataOnDemand.setOwnerUri(UserEntityBase obj, int index) {
-        String ownerUri = "ownerUri_" + index;
-        obj.setOwnerUri(ownerUri);
-    }
-    
-    public void UserDataOnDemand.setParentGroupUri(UserEntityBase obj, int index) {
-        String parentGroupUri = "parentGroupUri_" + index;
-        obj.setParentGroupUri(parentGroupUri);
-    }
-    
-    public void UserDataOnDemand.setUri(UserEntityBase obj, int index) {
-        String uri = "uri_" + index;
-        obj.setUri(uri);
     }
     
     public UserEntityBase UserDataOnDemand.getSpecificUserEntityBase(int index) {

@@ -4,13 +4,27 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.UserEntityBase;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 privileged aspect UserEntityBase_Roo_Jpa_Entity {
     
     declare @type: UserEntityBase: @Entity;
     
     declare @type: UserEntityBase: @Table(name = "user_table");
+    
+    @Version
+    @Column(name = "version")
+    private Integer UserEntityBase.version;
+    
+    public Integer UserEntityBase.getVersion() {
+        return this.version;
+    }
+    
+    public void UserEntityBase.setVersion(Integer version) {
+        this.version = version;
+    }
     
 }

@@ -4,14 +4,40 @@
 */
 package io.algorithms.entity;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * Algorithm Entity interface.
  */
-public interface AlgorithmEntity extends Entity {
+public interface AlgorithmEntity {
+    // The following were originally part of entity
+    Long getId();
+    
+    void setId(Long id);
 
-    List<String> getCategories();
+    String getName();
+    
+    void setName(String name);
+    
+    String getDescription();
+    
+    void setDescription(String description);
+    
+    Date getCreateTime();
+    
+    void setCreateTime(Date createTime);
+    
+    Date getLastModifiedTime();
+    
+    void setLastModifiedTime(Date lastModifiedTime);
+    // End entity methods
 
-    void setCategories(List<String> categories);
+    String getCategory();
+
+    void setCategory(String categories);
+    
+    String getImplementation();
+
+    void setImplementation(String implementation);
+    
 }

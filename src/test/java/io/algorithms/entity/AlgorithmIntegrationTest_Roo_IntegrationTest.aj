@@ -89,7 +89,7 @@ privileged aspect AlgorithmIntegrationTest_Roo_IntegrationTest {
         obj = AlgorithmEntityBase.findAlgorithmEntityBase(id);
         boolean modified =  dod.modifyAlgorithmEntityBase(obj);
         Integer currentVersion = obj.getVersion();
-        AlgorithmEntityBase merged = (AlgorithmEntityBase)obj.merge();
+        AlgorithmEntityBase merged = obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'AlgorithmEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);

@@ -5,9 +5,20 @@ package io.algorithms.entity;
 
 import io.algorithms.entity.JobEntityBase;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect JobEntityBase_Roo_Jpa_ActiveRecord {
+    
+    @PersistenceContext
+    transient EntityManager JobEntityBase.entityManager;
+    
+    public static final EntityManager JobEntityBase.entityManager() {
+        EntityManager em = new JobEntityBase().entityManager;
+        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+        return em;
+    }
     
     public static long JobEntityBase.countJobEntityBases() {
         return entityManager().createQuery("SELECT COUNT(o) FROM JobEntityBase o", Long.class).getSingleResult();
@@ -24,6 +35,35 @@ privileged aspect JobEntityBase_Roo_Jpa_ActiveRecord {
     
     public static List<JobEntityBase> JobEntityBase.findJobEntityBaseEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM JobEntityBase o", JobEntityBase.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    @Transactional
+    public void JobEntityBase.persist() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.persist(this);
+    }
+    
+    @Transactional
+    public void JobEntityBase.remove() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(this)) {
+            this.entityManager.remove(this);
+        } else {
+            JobEntityBase attached = JobEntityBase.findJobEntityBase(this.id);
+            this.entityManager.remove(attached);
+        }
+    }
+    
+    @Transactional
+    public void JobEntityBase.flush() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.flush();
+    }
+    
+    @Transactional
+    public void JobEntityBase.clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
     }
     
     @Transactional

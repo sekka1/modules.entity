@@ -4,10 +4,24 @@
 package io.algorithms.entity;
 
 import io.algorithms.entity.DataSetEntityBase;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Version;
 
 privileged aspect DataSetEntityBase_Roo_Jpa_Entity {
     
     declare @type: DataSetEntityBase: @Entity;
+    
+    @Version
+    @Column(name = "version")
+    private Integer DataSetEntityBase.version;
+    
+    public Integer DataSetEntityBase.getVersion() {
+        return this.version;
+    }
+    
+    public void DataSetEntityBase.setVersion(Integer version) {
+        this.version = version;
+    }
     
 }

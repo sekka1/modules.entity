@@ -89,7 +89,7 @@ privileged aspect JobIntegrationTest_Roo_IntegrationTest {
         obj = JobEntityBase.findJobEntityBase(id);
         boolean modified =  dod.modifyJobEntityBase(obj);
         Integer currentVersion = obj.getVersion();
-        JobEntityBase merged = (JobEntityBase)obj.merge();
+        JobEntityBase merged = obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'JobEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);

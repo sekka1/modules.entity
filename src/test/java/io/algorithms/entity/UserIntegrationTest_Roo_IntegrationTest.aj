@@ -89,7 +89,7 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
         obj = UserEntityBase.findUserEntityBase(id);
         boolean modified =  dod.modifyUserEntityBase(obj);
         Integer currentVersion = obj.getVersion();
-        UserEntityBase merged = (UserEntityBase)obj.merge();
+        UserEntityBase merged = obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'UserEntityBase' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);

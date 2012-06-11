@@ -1,16 +1,17 @@
 package io.algorithms.entity;
 
-import java.util.List;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Transient;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -18,17 +19,99 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @XmlRootElement
-public class DataSetEntityBase extends EntityBase implements DataSetEntity {
+@Table(name="datasources")
+public class DataSetEntityBase implements DataSetEntity {
     
     private long size;
 
-    @Enumerated(EnumType.STRING)
-    private DataFormat format;
+    @Column(name="location")
+    private String dataSource; 
 
-    @ElementCollection(targetClass=FieldEntityBase.class)
-    @OneToMany(cascade=CascadeType.ALL)
-    @OrderColumn
-    private List<FieldEntityBase> fields;
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id_seq")
+    private Long id;
+
+    @Column(name="friendly_name")
+    private String name;
+
+    @Column(name="friendly_description")
+    private String description;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datetime_created")
+    private Date createTime;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datetime_modified")
+    private Date lastModifiedTime;
+
+    @ManyToOne
+    @JoinColumn(name="customer_id_seq")
+    private UserEntityBase owner;
+    
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+    
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+        if (name == null && id != null) {
+            name = String.valueOf(id);
+        }
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
+    }
+    
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
+    
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    @Override
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+    
+    @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+    
+    @Override
+    public Date getLastModifiedTime() {
+        return this.lastModifiedTime;
+    }
+    
+    @Override
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    @Override
+    public UserEntity getOwner() {
+        return owner;
+    }
+    
+    @Override
+    public void setOwner(UserEntityBase owner) {
+        this.owner = owner;
+    }
 
     /* (non-Javadoc)
      * @see io.algorithms.entity.DataSetEntityI#getSize()
@@ -45,36 +128,21 @@ public class DataSetEntityBase extends EntityBase implements DataSetEntity {
     public void setSize(long size) {
         this.size = size;
     }
-    
+
     /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#getFormat()
+     * @see io.algorithms.entity.DataSetEntity#getDataSource()
      */
     @Override
-    public DataFormat getFormat() {
-        return this.format;
+    public String getDataSource() {
+        return dataSource;
     }
-    
+
     /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#setFormat(io.algorithms.entity.DataFormat)
+     * @see io.algorithms.entity.DataSetEntity#setDataSource(java.lang.String)
      */
     @Override
-    public void setFormat(DataFormat format) {
-        this.format = format;
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
     }
     
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#getFields()
-     */
-    @Override
-    public List<FieldEntityBase> getFields() {
-        return this.fields;
-    }
-    
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntityI#setFields(java.util.List)
-     */
-    @Override
-    public void setFields(List<FieldEntityBase> fields) {
-        this.fields = fields;
-    }
 }

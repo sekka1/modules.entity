@@ -4,23 +4,44 @@
 */
 package io.algorithms.entity;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * Interface for dataset.
  */
-public interface DataSetEntity extends Entity {
+public interface DataSetEntity {
+    // The following were originally part of entity
+    Long getId();
+    
+    void setId(Long id);
+
+    String getName();
+    
+    void setName(String name);
+    
+    String getDescription();
+    
+    void setDescription(String description);
+    
+    Date getCreateTime();
+    
+    void setCreateTime(Date createTime);
+    
+    Date getLastModifiedTime();
+    
+    void setLastModifiedTime(Date lastModifiedTime);
+    
+    UserEntity getOwner();
+    
+    void setOwner(UserEntityBase owner);
+    // End entity methods
 
     long getSize();
 
     void setSize(long size);
 
-    DataFormat getFormat();
-
-    void setFormat(DataFormat format);
-
-    List<FieldEntityBase> getFields();
-
-    void setFields(List<FieldEntityBase> fields);
+    String getDataSource();
+    
+    void setDataSource(String dataSource);
 
 }

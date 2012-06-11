@@ -1,9 +1,14 @@
 package io.algorithms.entity;
 
-import java.util.List;
+import java.util.Date;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.OrderColumn;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -12,36 +17,107 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @XmlRootElement
-public class AlgorithmEntityBase extends EntityBase implements AlgorithmEntity {
-    @ElementCollection(targetClass=String.class)
-    @OrderColumn
-    private List<String> categories;
-//
-//    private Algorithm algorithm;
+@Table(name="algorithms")
+public class AlgorithmEntityBase implements AlgorithmEntity {
+    @Column(name="class")
+    private String category;
     
-//    @ElementCollection(targetClass=DataSetEntityBase.class)
-//    @OneToMany(cascade=CascadeType.ALL)
-//    @OrderColumn
-//    private List<DataSetEntityBase> inputDataSets;
-//
-//    @ElementCollection(targetClass=DataSetEntityBase.class)
-//    @OneToMany(cascade=CascadeType.ALL)
-//    @OrderColumn
-//    private List<DataSetEntityBase> outputDataSets;
+    @Column(name="implementation_class")
+    private String implementation;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id_seq")
+    private Long id;
+    
+    private String name;
+
+    private String description;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datetime_created")
+    private Date createTime;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datetime_modified")
+    private Date lastModifiedTime;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+    
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+        if (name == null && id != null) {
+            name = String.valueOf(id);
+        }
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
+    }
+    
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
+    
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    @Override
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+    
+    @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+    
+    @Override
+    public Date getLastModifiedTime() {
+        return this.lastModifiedTime;
+    }
+    
+    @Override
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
 
     /* (non-Javadoc)
      * @see io.algorithms.entity.AlgorithmEntityI#getCategories()
      */
     @Override
-    public List<String> getCategories() {
-        return this.categories;
+    public String getCategory() {
+        return this.category;
     }
     
     /* (non-Javadoc)
      * @see io.algorithms.entity.AlgorithmEntityI#setCategories(java.util.List)
      */
     @Override
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public String getImplementation() {
+        return implementation;
+    }
+
+    @Override
+    public void setImplementation(String implementation) {
+        this.implementation = implementation;
     }
 }

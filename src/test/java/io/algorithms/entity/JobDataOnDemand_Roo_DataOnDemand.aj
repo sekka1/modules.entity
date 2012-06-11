@@ -29,15 +29,9 @@ privileged aspect JobDataOnDemand_Roo_DataOnDemand {
     public JobEntityBase JobDataOnDemand.getNewTransientJobEntityBase(int index) {
         JobEntityBase obj = new JobEntityBase();
         setCreateTime(obj, index);
-        setDescription(obj, index);
         setLastModifiedTime(obj, index);
-        setLastModifiedUserUri(obj, index);
         setName(obj, index);
-        setOwnerGroupUri(obj, index);
-        setOwnerUri(obj, index);
-        setParentGroupUri(obj, index);
         setStatus(obj, index);
-        setUri(obj, index);
         return obj;
     }
     
@@ -46,19 +40,9 @@ privileged aspect JobDataOnDemand_Roo_DataOnDemand {
         obj.setCreateTime(createTime);
     }
     
-    public void JobDataOnDemand.setDescription(JobEntityBase obj, int index) {
-        String description = "description_" + index;
-        obj.setDescription(description);
-    }
-    
     public void JobDataOnDemand.setLastModifiedTime(JobEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
-    }
-    
-    public void JobDataOnDemand.setLastModifiedUserUri(JobEntityBase obj, int index) {
-        String lastModifiedUserUri = "lastModifiedUserUri_" + index;
-        obj.setLastModifiedUserUri(lastModifiedUserUri);
     }
     
     public void JobDataOnDemand.setName(JobEntityBase obj, int index) {
@@ -66,29 +50,9 @@ privileged aspect JobDataOnDemand_Roo_DataOnDemand {
         obj.setName(name);
     }
     
-    public void JobDataOnDemand.setOwnerGroupUri(JobEntityBase obj, int index) {
-        String ownerGroupUri = "ownerGroupUri_" + index;
-        obj.setOwnerGroupUri(ownerGroupUri);
-    }
-    
-    public void JobDataOnDemand.setOwnerUri(JobEntityBase obj, int index) {
-        String ownerUri = "ownerUri_" + index;
-        obj.setOwnerUri(ownerUri);
-    }
-    
-    public void JobDataOnDemand.setParentGroupUri(JobEntityBase obj, int index) {
-        String parentGroupUri = "parentGroupUri_" + index;
-        obj.setParentGroupUri(parentGroupUri);
-    }
-    
     public void JobDataOnDemand.setStatus(JobEntityBase obj, int index) {
         JobStatus status = JobStatus.class.getEnumConstants()[0];
         obj.setStatus(status);
-    }
-    
-    public void JobDataOnDemand.setUri(JobEntityBase obj, int index) {
-        String uri = "uri_" + index;
-        obj.setUri(uri);
     }
     
     public JobEntityBase JobDataOnDemand.getSpecificJobEntityBase(int index) {

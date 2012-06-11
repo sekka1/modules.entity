@@ -27,16 +27,18 @@ privileged aspect AlgorithmDataOnDemand_Roo_DataOnDemand {
     
     public AlgorithmEntityBase AlgorithmDataOnDemand.getNewTransientAlgorithmEntityBase(int index) {
         AlgorithmEntityBase obj = new AlgorithmEntityBase();
+        setCategory(obj, index);
         setCreateTime(obj, index);
         setDescription(obj, index);
+        setImplementation(obj, index);
         setLastModifiedTime(obj, index);
-        setLastModifiedUserUri(obj, index);
         setName(obj, index);
-        setOwnerGroupUri(obj, index);
-        setOwnerUri(obj, index);
-        setParentGroupUri(obj, index);
-        setUri(obj, index);
         return obj;
+    }
+    
+    public void AlgorithmDataOnDemand.setCategory(AlgorithmEntityBase obj, int index) {
+        String category = "category_" + index;
+        obj.setCategory(category);
     }
     
     public void AlgorithmDataOnDemand.setCreateTime(AlgorithmEntityBase obj, int index) {
@@ -49,39 +51,19 @@ privileged aspect AlgorithmDataOnDemand_Roo_DataOnDemand {
         obj.setDescription(description);
     }
     
+    public void AlgorithmDataOnDemand.setImplementation(AlgorithmEntityBase obj, int index) {
+        String implementation = "implementation_" + index;
+        obj.setImplementation(implementation);
+    }
+    
     public void AlgorithmDataOnDemand.setLastModifiedTime(AlgorithmEntityBase obj, int index) {
         Date lastModifiedTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setLastModifiedTime(lastModifiedTime);
     }
     
-    public void AlgorithmDataOnDemand.setLastModifiedUserUri(AlgorithmEntityBase obj, int index) {
-        String lastModifiedUserUri = "lastModifiedUserUri_" + index;
-        obj.setLastModifiedUserUri(lastModifiedUserUri);
-    }
-    
     public void AlgorithmDataOnDemand.setName(AlgorithmEntityBase obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
-    }
-    
-    public void AlgorithmDataOnDemand.setOwnerGroupUri(AlgorithmEntityBase obj, int index) {
-        String ownerGroupUri = "ownerGroupUri_" + index;
-        obj.setOwnerGroupUri(ownerGroupUri);
-    }
-    
-    public void AlgorithmDataOnDemand.setOwnerUri(AlgorithmEntityBase obj, int index) {
-        String ownerUri = "ownerUri_" + index;
-        obj.setOwnerUri(ownerUri);
-    }
-    
-    public void AlgorithmDataOnDemand.setParentGroupUri(AlgorithmEntityBase obj, int index) {
-        String parentGroupUri = "parentGroupUri_" + index;
-        obj.setParentGroupUri(parentGroupUri);
-    }
-    
-    public void AlgorithmDataOnDemand.setUri(AlgorithmEntityBase obj, int index) {
-        String uri = "uri_" + index;
-        obj.setUri(uri);
     }
     
     public AlgorithmEntityBase AlgorithmDataOnDemand.getSpecificAlgorithmEntityBase(int index) {
