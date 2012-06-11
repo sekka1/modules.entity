@@ -36,8 +36,8 @@ public interface AlgorithmEntity {
 
     void setCategory(String categories);
     
-    String getImplementation();
+    Algorithm getAlgorithm();
 
-    void setImplementation(String implementation);
+    void setAlgorithm(Algorithm algorithm);
     
 }

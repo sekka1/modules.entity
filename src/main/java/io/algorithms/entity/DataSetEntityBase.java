@@ -1,5 +1,8 @@
 package io.algorithms.entity;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -131,27 +134,38 @@ public class DataSetEntityBase implements DataSetEntity {
     }
 
     /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#getDataSource()
+     * @see io.algorithms.entity.DataSetEntity#getDataFile()
      */
     @Override
-    public String getDataSource() {
-        return dataSource;
+    public File getDataFile() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#setDataSource(java.lang.String)
+     * @see io.algorithms.entity.DataSetEntity#putDataFile(java.io.File)
      */
     @Override
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
+    public void putDataFile(File file) {
+        // TODO Auto-generated method stub
+        
     }
 
-    public String getFileSystemName() {
-        return fileSystemName;
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getDataInputStream()
+     */
+    @Override
+    public InputStream getDataInputStream() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
-    public void setFileSystemName(String fileSystemName) {
-        this.fileSystemName = fileSystemName;
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getDataOutputStream()
+     */
+    @Override
+    public OutputStream getDataOutputStream() {
+        // TODO Auto-generated method stub
+        return null;
     }
-    
 }

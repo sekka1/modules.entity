@@ -3,7 +3,7 @@
 * $Author: rajiv$
 * $Date: Feb 22, 2012$
 */
-package io.algorithms.entity;
+package io.algorithms.datastore;
 
 import java.io.File;
 import java.io.IOException;

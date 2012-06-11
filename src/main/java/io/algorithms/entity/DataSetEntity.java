@@ -4,6 +4,9 @@
 */
 package io.algorithms.entity;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 /**
@@ -39,12 +42,12 @@ public interface DataSetEntity {
     long getSize();
 
     void setSize(long size);
-
-    String getDataSource();
     
-    void setDataSource(String dataSource);
-
-    public String getFileSystemName();
-
-    public void setFileSystemName(String fileSystemName);
+    File getDataFile();
+    
+    void putDataFile(File file);
+    
+    InputStream getDataInputStream();
+    
+    OutputStream getDataOutputStream();
 }

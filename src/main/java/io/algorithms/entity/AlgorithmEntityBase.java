@@ -109,13 +109,20 @@ public class AlgorithmEntityBase implements AlgorithmEntity {
         this.category = category;
     }
 
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.AlgorithmEntity#getAlgorithm()
+     */
     @Override
-    public String getImplementation() {
-        return implementation;
+    public Algorithm getAlgorithm() {
+        return AlgorithmRegister.getAlgorithm(implementation);
     }
 
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.AlgorithmEntity#setAlgorithm(io.algorithms.entity.Algorithm)
+     */
     @Override
-    public void setImplementation(String implementation) {
-        this.implementation = implementation;
+    public void setAlgorithm(Algorithm algorithm) {
+        AlgorithmRegister.registerAlgorithm(algorithm.getImplementationClass(), algorithm);
+        this.implementation = algorithm.getImplementationClass();
     }
 }
