@@ -26,7 +26,7 @@ public class DataSetEntityBase implements DataSetEntity {
     private long size;
 
     @Column(name="location")
-    private String dataSource; 
+    private String location; 
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -167,5 +167,21 @@ public class DataSetEntityBase implements DataSetEntity {
     public OutputStream getDataOutputStream() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getFileSystemName()
+     */
+    @Override
+    public String getFileSystemName() {
+        return fileSystemName;
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#setFileSystemName(java.lang.String)
+     */
+    @Override
+    public void setFileSystemName(String fileSystemName) {
+        this.fileSystemName = fileSystemName;
     }
 }

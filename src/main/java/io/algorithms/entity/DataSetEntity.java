@@ -43,6 +43,10 @@ public interface DataSetEntity {
 
     void setSize(long size);
     
+    String getFileSystemName();
+    
+    void setFileSystemName(String fileSystemName);
+    
     File getDataFile();
     
     void putDataFile(File file);
