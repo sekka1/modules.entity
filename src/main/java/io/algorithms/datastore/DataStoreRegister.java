@@ -7,21 +7,12 @@ package io.algorithms.datastore;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3Client;
-
 /**
  * Translates between implementation class string and actual implemenation.
  */
 public class DataStoreRegister {
 
     private static ConcurrentMap<String, DataStore> dataStoreRegister = new ConcurrentHashMap<String, DataStore>();
-    
-    static {
-        // TODO: This is test code. Please remove!
-        DataStore s3dataStore = new AmazonDataStore(new AmazonS3Client(new BasicAWSCredentials("AKIAJO6OOIFG3LCMZPGA", "sQNUF++7eFhh8JIlTNgUnKKx3HdOhRmN+V7pto5F")));
-        dataStoreRegister.put("S3,algorithms.io", s3dataStore);
-    }
     
     /**
      * @param implementation

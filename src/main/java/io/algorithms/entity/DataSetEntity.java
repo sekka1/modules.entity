@@ -5,6 +5,7 @@
 package io.algorithms.entity;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
@@ -47,11 +48,15 @@ public interface DataSetEntity {
     
     void setFileSystemName(String fileSystemName);
     
-    File getDataFile();
+    String getLocation();
     
-    void putDataFile(File file);
+    void setLocation(String location);
     
-    InputStream getDataInputStream();
+    File getDataFile() throws IOException;
     
-    OutputStream getDataOutputStream();
+    void putDataFile(File file) throws IOException;
+    
+    InputStream getDataInputStream() throws IOException;
+    
+    OutputStream getDataOutputStream() throws IOException;
 }

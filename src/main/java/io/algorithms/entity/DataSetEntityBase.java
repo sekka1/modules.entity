@@ -1,6 +1,11 @@
 package io.algorithms.entity;
 
+import io.algorithms.datastore.DataStore;
+import io.algorithms.datastore.DataStoreNotFoundException;
+import io.algorithms.datastore.DataStoreRegister;
+
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
@@ -13,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -53,6 +59,12 @@ public class DataSetEntityBase implements DataSetEntity {
     @ManyToOne
     @JoinColumn(name="customer_id_seq")
     private UserEntityBase owner;
+    
+    @Transient
+    private DataStore dataStore;
+    
+    @Transient
+    private String folder;
     
     @Override
     public Long getId() {
@@ -133,41 +145,6 @@ public class DataSetEntityBase implements DataSetEntity {
         this.size = size;
     }
 
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#getDataFile()
-     */
-    @Override
-    public File getDataFile() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#putDataFile(java.io.File)
-     */
-    @Override
-    public void putDataFile(File file) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#getDataInputStream()
-     */
-    @Override
-    public InputStream getDataInputStream() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see io.algorithms.entity.DataSetEntity#getDataOutputStream()
-     */
-    @Override
-    public OutputStream getDataOutputStream() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     /* (non-Javadoc)
      * @see io.algorithms.entity.DataSetEntity#getFileSystemName()
@@ -183,5 +160,76 @@ public class DataSetEntityBase implements DataSetEntity {
     @Override
     public void setFileSystemName(String fileSystemName) {
         this.fileSystemName = fileSystemName;
+    }
+
+    /**
+     * @return the location
+     */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getDataFile()
+     */
+    @Override
+    public File getDataFile() throws IOException {
+        cacheDataStoreAndFolder();
+        return dataStore.getFile(folder, fileSystemName);
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#putDataFile(java.io.File)
+     */
+    @Override
+    public void putDataFile(File file) throws IOException {
+        cacheDataStoreAndFolder();
+        dataStore.putFile(folder, fileSystemName, file);
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getDataInputStream()
+     */
+    @Override
+    public InputStream getDataInputStream() throws IOException {
+        cacheDataStoreAndFolder();
+        return dataStore.getInputStream(folder, fileSystemName);
+    }
+
+    /* (non-Javadoc)
+     * @see io.algorithms.entity.DataSetEntity#getDataOutputStream()
+     */
+    @Override
+    public OutputStream getDataOutputStream() throws IOException {
+        cacheDataStoreAndFolder();
+        return dataStore.getOutputStream(folder, fileSystemName);
+    }
+    /**
+     * This parses the location field which has the format "S3,bucketname"
+     */
+    private void cacheDataStoreAndFolder() throws IOException {
+        if ((dataStore == null || folder == null) && location != null) {
+            String[] dataSourceAndFolder = location.split(",");
+            if (dataSourceAndFolder == null || dataSourceAndFolder.length != 2) {
+                throw new IOException("Invalid location [" + location + "]. Must be of the form 'DataSource,Folder'");
+            }
+            folder = dataSourceAndFolder[1];
+            String dataStoreString = dataSourceAndFolder[0];
+            if (folder == null || dataStoreString == null) {
+                throw new IOException("Invalid location [" + location + "]. Must be of the form 'DataSource,Folder'");
+            }
+            try {
+                dataStore = DataStoreRegister.getDataStore(dataStoreString);
+            } catch (DataStoreNotFoundException e) {
+                throw new IOException("Cannot find dataStore with name [" + dataStoreString + "]", e);
+            }
+        }
     }
 }

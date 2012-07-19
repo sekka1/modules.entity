@@ -4,7 +4,7 @@
     <groupId>io.algorithms</groupId>
     <artifactId>entity</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <name>entity</name>
     <properties>
         <aspectj.version>1.6.12</aspectj.version>
